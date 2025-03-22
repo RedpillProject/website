@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>Support Redpill Project</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     html, body {
       margin: 0;
@@ -98,4 +97,71 @@
       color: #fff;
       padding: 12px;
       text-decoration: none;
-      border-radius: 6
+      border-radius: 6px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-grid a:hover {
+      background-color: #b31e1e;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="donation-sticky-button" onclick="toggleDonationModal()">❤️ Support Us</div>
+
+  <div class="donation-modal" id="donationModal">
+    <div class="donation-modal-content">
+      <span class="close-modal" onclick="toggleDonationModal()">×</span>
+      <h3>Support the Redpill Project</h3>
+      <p>Help keep us uncensored, independent, and thriving. Every contribution helps us share the truth louder.</p>
+      <div class="button-grid">
+        <a href="https://redpills.tv/go" target="_blank"><i class="fas fa-play-circle"></i> Watch Live / Archives</a>
+        <a href="https://www.redpillprojectmedia.com/crypto" target="_blank"><i class="fab fa-bitcoin"></i> Crypto Support</a>
+        <a href="https://www.paypal.com/biz/profile/redpillstv" target="_blank"><i class="fab fa-paypal"></i> Donate via PayPal</a>
+        <a href="https://www.redpillpatrons.com/spaces/10116737/feed" target="_blank"><i class="fas fa-users"></i> Join Our Patron Community</a>
+        <a href="https://cash.app/$redpillproject" target="_blank"><i class="fas fa-dollar-sign"></i> Support via Cash App</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('donationModal');
+
+    function toggleDonationModal() {
+      modal.classList.toggle('show');
+      const isOpen = modal.classList.contains('show');
+      // Send height update to parent window (Wix)
+      window.parent.postMessage({ type: 'donation-modal', open: isOpen }, '*');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('show')) {
+        toggleDonationModal();
+      }
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        toggleDonationModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
