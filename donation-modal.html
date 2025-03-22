@@ -147,8 +147,9 @@
       modal.classList.toggle('show');
       const isOpen = modal.classList.contains('show');
       // Send height update to parent window (Wix)
-      window.parent.postMessage({ type: 'donation-modal', open: isOpen }, '*');
-    }
+    console.log("Sending resize message to parent...", isOpen);
+window.parent.postMessage({ type: 'donation-modal', open: isOpen }, '*');
+
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modal.classList.contains('show')) {
