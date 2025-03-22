@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Support Redpill Project</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .donation-sticky-button {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #d62828;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      cursor: pointer;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(214, 40, 40, 0.5); }
+      70% { box-shadow: 0 0 0 10px rgba(214, 40, 40, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(214, 40, 40, 0); }
+    }
+
+    .donation-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 9998;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      flex-direction: column;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .donation-modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .donation-modal-content {
+      background: #fff;
+      max-width: 500px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      position: relative;
+      animation: slideInUp 0.3s ease;
+    }
+
+    @keyframes slideInUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .donation-modal h3 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .donation-modal p {
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .button-grid a {
+      background-color: #d62828;
+      color: #fff;
+      padding: 12px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-grid a:hover {
+      background-color: #b31e1e;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="donation-sticky-button" onclick="toggleDonationModal()">❤️ Support Us</div>
+
+<div class="donation-modal" id="donationModal">
+  <div class="donation-modal-content">
+    <span class="close-modal" onclick="toggleDonationModal()">×</span>
+    <h3>Support the Redpill Project</h3>
+    <p>Help keep us uncensored, independent, and thriving. Every contribution helps us share the truth louder.</p>
+    <div class="button-grid">
+      <a href="https://redpills.tv/go" target="_blank"><i class="fas fa-play-circle"></i> Watch Live / Archives</a>
+      <a href="https://www.redpillprojectmedia.com/crypto" target="_blank"><i class="fab fa-bitcoin"></i> Crypto Support</a>
+      <a href="https://www.paypal.com/biz/profile/redpillstv" target="_blank"><i class="fab fa-paypal"></i> Donate via PayPal</a>
+      <a href="https://www.redpillpatrons.com/spaces/10116737/feed" target="_blank"><i class="fas fa-users"></i> Join Our Patron Community</a>
+      <a href="https://cash.app/$redpillproject" target="_blank"><i class="fas fa-dollar-sign"></i> Support via Cash App</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('donationModal');
+
+  function toggleDonationModal() {
+    modal.classList.toggle('show');
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) {
+      modal.classList.remove('show');
+    }
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('show');
+    }
+  });
+</script>
+
+</body>
+</html>
